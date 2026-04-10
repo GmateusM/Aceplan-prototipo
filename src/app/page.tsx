@@ -31,7 +31,7 @@ export default function Home() {
     <div className="bg-[#FAF9F6] w-full min-h-screen font-sans">
       
       {/* Slide / Carousel Hero */}
-      <section className="relative w-full h-[65vh] md:h-[80vh] flex overflow-hidden">
+      <section className="relative w-full h-[30vh] md:h-[80vh] flex overflow-hidden">
         <a 
           href="https://api.whatsapp.com/send?phone=5524999559898"
           target="_blank"
