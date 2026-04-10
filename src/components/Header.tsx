@@ -22,7 +22,7 @@ export function Header() {
 
   return (
     <>
-      <header className="w-full bg-gray-600/60 backdrop-blur-md fixed top-0 z-50 shadow-sm">
+      <header className="w-full bg-white/10 backdrop-blur-md fixed top-0 z-50">
         <div className="container mx-auto px-4 lg:px-8">
           <nav className="flex items-center justify-between h-14">
             <Link href="/" className="flex-shrink-0">

@@ -52,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${mitr.variable} scroll-smooth`}>
-      <body className="min-h-screen flex flex-col font-sans pt-14">
+      <body className="min-h-screen flex flex-col font-sans">
         <Analytics />
         <Header />
         <main className="flex-grow">
