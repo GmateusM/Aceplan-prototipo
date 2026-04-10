@@ -24,14 +24,14 @@ export function Header() {
     <>
       <header className="w-full bg-gray-600/60 backdrop-blur-md fixed top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 lg:px-8">
-          <nav className="flex items-center justify-between h-20">
+          <nav className="flex items-center justify-between h-14">
             <Link href="/" className="flex-shrink-0">
               <Image 
                 src="/assets/img/logo.svg" 
                 alt="Aceplan" 
                 width={150} 
                 height={50} 
-                className="h-10 w-auto brightness-0 invert"
+                className="h-8 w-auto brightness-0 invert"
                 priority
               />
             </Link>
