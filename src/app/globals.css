@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-orange: #FF5C00;
+  --color-brand-text: #333333;
+  --color-brand-bg: #F8F9FA;
+  --color-brand-white: #FFFFFF;
+  --font-mitr: var(--font-mitr);
+  --font-inter: var(--font-inter);
+}
+
+:root {
+  --background: var(--color-brand-bg);
+  --foreground: var(--color-brand-text);
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), sans-serif;
+}
