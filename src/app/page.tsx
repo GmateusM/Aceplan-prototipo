@@ -31,7 +31,7 @@ export default function Home() {
     <div className="bg-[#FAF9F6] w-full min-h-screen font-sans">
       
       {/* Slide / Carousel Hero */}
-      <section className="relative w-full h-auto aspect-[16/7] md:h-[80vh] flex overflow-hidden bg-brand-text">
+      <section className="relative w-full h-[65vh] md:h-[80vh] flex overflow-hidden">
         <a 
           href="https://api.whatsapp.com/send?phone=5524999559898"
           target="_blank"
@@ -42,7 +42,7 @@ export default function Home() {
               src="/sgw.aceplanvr.com.br/storage/conteudo/1/348/20231002161353_651b167135b78.png"
               alt="Banner Aceplan"
               fill
-              className="object-contain md:object-cover transition-transform duration-1000 group-hover:scale-105"
+              className="object-cover transition-transform duration-1000 group-hover:scale-105"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-brand-text/80 via-black/20 to-transparent" />
@@ -51,7 +51,7 @@ export default function Home() {
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                transition={{ duration: 0.8, delay: 0.2 }}
-               className="absolute bottom-10 md:bottom-20 left-4 md:left-20 z-10 p-6 md:p-0"
+               className="hidden md:block absolute bottom-10 md:bottom-20 left-4 md:left-20 z-10 p-6 md:p-0"
             >
                <span className="text-brand-orange uppercase font-bold tracking-[0.2em] text-sm md:text-base drop-shadow-md mb-2 block">
                   Construindo Sonhos
