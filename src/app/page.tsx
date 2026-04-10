@@ -1,11 +1,120 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { propertiesMock } from '@/data/properties';
-import { ArrowRight, Quote, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Quote, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const heroSlides = [
+  {
+    src: "/sgw.aceplanvr.com.br/storage/conteudo/1/348/20231002161353_651b167135b78.png",
+    alt: "Banner Aceplan - Construindo Sonhos",
+    link: "https://api.whatsapp.com/send?phone=5524999559898",
+    showText: true,
+  },
+  {
+    src: "/assets/img/banners/banner-village.png",
+    alt: "Village Retiro Residencial",
+    link: "https://api.whatsapp.com/send?phone=5524999559898",
+  },
+  {
+    src: "/assets/img/banners/banner-selos.png",
+    alt: "Aceplan - Credibilidade e Qualidade Reconhecidas",
+    link: "https://api.whatsapp.com/send?phone=5524999559898",
+  },
+  {
+    src: "/assets/img/banners/banner-aluguel.png",
+    alt: "Saia do Aluguel - Aceplan",
+    link: "https://api.whatsapp.com/send?phone=5524999559898",
+  },
+  {
+    src: "/assets/img/banners/banner-amigos.png",
+    alt: "Promoção Amigos São Outros 500",
+    link: "https://api.whatsapp.com/send?phone=5524999559898",
+  },
+];
+
+function HeroCarousel() {
+  const [current, setCurrent] = useState(0);
+
+  const nextSlide = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % heroSlides.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrent((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, [nextSlide]);
+
+  return (
+    <section className="relative w-full h-[30vh] md:h-[80vh] flex overflow-hidden">
+      {heroSlides.map((slide, idx) => (
+        <a
+          key={idx}
+          href={slide.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${idx === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+        >
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            className="object-cover"
+            priority={idx === 0}
+          />
+          {slide.showText && (
+            <>
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-text/80 via-black/20 to-transparent" />
+              <div className="hidden md:block absolute bottom-20 left-20 z-10">
+                <span className="text-brand-orange uppercase font-bold tracking-[0.2em] text-base drop-shadow-md mb-2 block">
+                  Construindo Sonhos
+                </span>
+                <h1 className="text-white text-6xl font-black font-mitr leading-tight drop-shadow-xl max-w-2xl">
+                  Bem-vindo à nova dimensão Aceplan.
+                </h1>
+              </div>
+            </>
+          )}
+        </a>
+      ))}
+
+      {/* Setas de Navegação */}
+      <button
+        onClick={(e) => { e.preventDefault(); prevSlide(); }}
+        className="absolute left-3 md:left-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
+        aria-label="Slide anterior"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      <button
+        onClick={(e) => { e.preventDefault(); nextSlide(); }}
+        className="absolute right-3 md:right-6 top-1/2 -translate-y-1/2 z-20 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
+        aria-label="Próximo slide"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* Indicadores */}
+      <div className="absolute bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+        {heroSlides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={(e) => { e.preventDefault(); setCurrent(idx); }}
+            className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${idx === current ? 'bg-brand-orange w-6 md:w-8' : 'bg-white/50 hover:bg-white/80'}`}
+            aria-label={`Ir para slide ${idx + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   const [activeTestimonialTab, setActiveTestimonialTab] = useState<'text' | 'videos'>('text');
@@ -31,37 +140,7 @@ export default function Home() {
     <div className="bg-[#FAF9F6] w-full min-h-screen font-sans">
       
       {/* Slide / Carousel Hero */}
-      <section className="relative w-full h-[30vh] md:h-[80vh] flex overflow-hidden">
-        <a 
-          href="https://api.whatsapp.com/send?phone=5524999559898"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full h-full relative group block cursor-pointer"
-        >
-            <Image 
-              src="/sgw.aceplanvr.com.br/storage/conteudo/1/348/20231002161353_651b167135b78.png"
-              alt="Banner Aceplan"
-              fill
-              className="object-cover transition-transform duration-1000 group-hover:scale-105"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-tr from-brand-text/80 via-black/20 to-transparent" />
-            <motion.div 
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               transition={{ duration: 0.8, delay: 0.2 }}
-               className="hidden md:block absolute bottom-10 md:bottom-20 left-4 md:left-20 z-10 p-6 md:p-0"
-            >
-               <span className="text-brand-orange uppercase font-bold tracking-[0.2em] text-sm md:text-base drop-shadow-md mb-2 block">
-                  Construindo Sonhos
-               </span>
-               <h1 className="text-white text-4xl md:text-6xl font-black font-mitr leading-tight drop-shadow-xl max-w-2xl">
-                  Bem-vindo à nova dimensão Aceplan.
-               </h1>
-            </motion.div>
-        </a>
-      </section>
+      <HeroCarousel />
 
       {/* Novos Empreendimentos */}
       <section className="py-20">
