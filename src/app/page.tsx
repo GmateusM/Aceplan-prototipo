@@ -53,7 +53,7 @@ function HeroCarousel() {
   }, [nextSlide]);
 
   return (
-    <section className="relative w-full h-[30vh] md:h-[80vh] flex overflow-hidden">
+    <section className="relative w-full h-[30vh] md:h-[80vh] flex overflow-hidden mt-14 md:mt-0">
       {heroSlides.map((slide, idx) => (
         <a
           key={idx}
